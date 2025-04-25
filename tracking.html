@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eye Tracking (Mobile)</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/webgazer" defer></script>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+      border: 2px solid #888;
+      border-radius: 15px;
+      background: rgba(50, 50, 50, 0.8);
+    }
+    #startBtn {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      background: #00bcd4;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+    }
+    #gazeCoordinates {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>👁️ Eye Tracking (Mobile)</h2>
+    <p>This page uses your mobile camera to track eye movement.</p>
+    <button id="startBtn">Start Camera</button>
+    <div id="gazeCoordinates">Gaze: (x, y)</div>
+  </div>
+
+  <script>
+    document.getElementById("startBtn").addEventListener("click", async () => {
+      try {
+        await webgazer.setRegression("ridge")
+          .setGazeListener((data) => {
+            if (data) {
+              document.getElementById("gazeCoordinates").innerText =
+                `Gaze: (${data.x.toFixed(0)}, ${data.y.toFixed(0)})`;
+            }
+          })
+          .showVideoPreview(true) // to check if camera opens
+          .showPredictionPoints(true)
+          .begin();
+      } catch (err) {
+        alert("Camera permission denied or not supported.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

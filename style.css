@@ -1,0 +1,202 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #000000, #111111);
+  color: #f5f5f5;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated Floating Bubbles */
+body::before,
+body::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255, 79, 129, 0.1) 20%, transparent 70%),
+              radial-gradient(circle, rgba(138, 43, 226, 0.07) 20%, transparent 70%),
+              radial-gradient(circle, rgba(0, 206, 209, 0.07) 20%, transparent 70%);
+  background-size: 400px 400px;
+  animation: moveBubbles 60s linear infinite;
+  z-index: 0;
+}
+body {
+  animation: moveBackground 10s linear infinite;
+}
+
+
+
+@keyframes moveBubbles {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+
+/* Glassy container with glow */
+.container {
+  padding: 30px;
+  max-width: 600px;
+  margin: 5vh auto;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 79, 129, 0.2);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Add a subtle glowing border animation */
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(145deg, #ff4f81, #8e44ad, #00ced1);
+  background-size: 200% 200%;
+  animation: glowBorder 8s ease infinite;
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+@keyframes glowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+div {
+  animation: moveTransform 5s linear infinite;
+}
+
+
+/* Button Styles */
+button {
+  background: linear-gradient(135deg, #ff4f81, #8e44ad);
+  border: none;
+  padding: 14px 30px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 79, 129, 0.4), 0 0 8px rgba(138, 43, 226, 0.3);
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255, 79, 129, 0.5), 0 0 12px rgba(138, 43, 226, 0.4);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* Animated Image Styles */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 79, 129, 0.5), 0 0 25px rgba(138, 43, 226, 0.4);
+}
+
+/* Animation for Image Floating */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* For the dot (during eye tracking) */
+#dot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: #ff4f81;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  display: none;
+  animation: dotPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(255, 79, 129, 0.6);
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+#dot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: #ff4f81;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  display: none;
+  animation: dotPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(255, 79, 129, 0.6);
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

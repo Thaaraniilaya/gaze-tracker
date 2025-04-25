@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scan QR to Start Tracking</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📱 Scan This QR Code</h1>
+    <p class="desc">Scan with your mobile phone to open the camera and start tracking.</p>
+    <img src="connect_qr.png" alt="Scan this QR code" width="300" style="border: 2px solid #000;" />
+    <button onclick="startCamera()">Start Camera</button>
+
+<script>
+function startCamera() {
+    webgazer.setRegression('ridge') // or your model
+        .setGazeListener((data, elapsedTime) => {
+            if (data) {
+                document.getElementById("gazeCoordinates").innerText =
+                    `Gaze: (${data.x.toFixed(0)}, ${data.y.toFixed(0)})`;
+            }
+        })
+        .begin()
+        .showVideoPreview(true) // try enabling video preview for mobile
+        .showPredictionPoints(true);
+}
+</script>
+
+  </div>
+</body>
+</html>

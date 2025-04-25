@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eye Tracking Setup</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Eye Tracking</h1>
+    <p class="desc">Use these buttons to control eye tracking on your mobile device.</p>
+
+    <button id="startTracking">Start Tracking</button>
+    <button id="stopTracking">Stop Tracking</button>
+
+    <p class="desc">To start tracking on mobile, go to the QR code page:</p>
+    <a href="qr.html"><button>Open QR Code</button></a>
+  </div>
+
+  <script>
+    document.getElementById('startTracking').onclick = () => alert("Start command sent!");
+    document.getElementById('stopTracking').onclick = () => alert("Stop command sent!");
+  </script>
+</body>
+</html>
